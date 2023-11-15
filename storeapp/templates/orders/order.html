@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+<!-- Page Content -->
+<section>
+    <div class="container pt-5">
+        <div class="text-center mt-5">
+            <h1>Заказ №{% for order in orders %} {{order.id}}{% endfor %}</h1>
+            <div class="orders mt-5">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Название</th>
+                        <th scope="col">Кол-во</th>
+                        <th scope="col">Цена</th>
+                        <th scope="col">Сумма</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for order in orders %}
+                    <tr>
+                        <th scope="row">
+                            {{order.basket.product.title}}
+                        </th>
+                        <td>{{order.basket.quantity}}</td>
+                        <td>{{order.basket.product.price}} руб.</td>
+                        <td>{{order.basket.sum}} руб.</td>
+
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <p class="float-right h4 mt-3">{{total_sum}} руб.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+{% endblock content %}
+

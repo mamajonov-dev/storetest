@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+<!-- Page Content -->
+<section>
+    <div class="container pt-5">
+        <div class="text-center mt-5">
+            <h1>Заказы</h1>
+            <div class="orders mt-5">
+                <table class="table">
+                    <thead>
+                    <tr class="table-light">
+                        <th scope="col">#</th>
+                        <th scope="col">Статус</th>
+                        <th scope="col">Создан</th>
+                        <th scope="col">Итого</th>
+                        <th scope="col">Действие</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for order in orders %}
+                    <tr class="{% if order.status.name == 'Yetkazildi' %} table-success {% elif order.status.name == 'Yetkazilmoqda' %} table-info {% else %}  {% endif %}">
+                        <th scope="row">{{order.id}}</th>
+                        <td>{{order.status}}</td>
+                        <td>{{order.create_order}}</td>
+                        <td>{{total_sum}} руб.</td>
+                        <td>
+                            <a href="{% url 'order' %}">просмотреть</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% endblock content %}
+
